@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://https://codemogg.cn/</id>
+    <title>CodeMogg</title>
+    <updated>2020-07-31T05:35:34.174Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://https://codemogg.cn/"/>
+    <link rel="self" href="https://https://codemogg.cn/atom.xml"/>
+    <subtitle>快乐摸鱼</subtitle>
+    <logo>https://https://codemogg.cn/images/avatar.png</logo>
+    <icon>https://https://codemogg.cn/favicon.ico</icon>
+    <rights>All rights reserved 2020, CodeMogg</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 第 199 场周赛题解]]></title>
+        <id>https://https://codemogg.cn/post/leetcode-199/</id>
+        <link href="https://https://codemogg.cn/post/leetcode-199/">
+        </link>
+        <updated>2020-07-31T04:46:00.000Z</updated>
+        <content type="html"><![CDATA[<p>自从实习跑路之后，最近又开始摸了起来（x）</p>
+<p>实习工资换了新电脑，爽了一个月之后进入贤者时间，无聊就开始刷刷题。</p>
+<p>懒得在新电脑上配一遍hexo，之前的博客就这样扔了吧。翻了翻国内的博客网站，CSDN屑，博客园有点麻烦，牛客丑。</p>
+<p>挑来挑去还是决定用gridea+gitpage，之前的博客有时间补一补吧。</p>
+<p>力扣周赛老是忘记打，平时补补题。</p>
+<p>cf时间点不太好，在家太晚不方便开灯，先补题，开学再打。</p>
+<h2 id="1528-重新排列字符串"><a href="https://leetcode-cn.com/problems/shuffle-string/">1528. 重新排列字符串</a></h2>
+<p>水题</p>
+<h2 id="1529-灯泡开关-iv"><a href="https://leetcode-cn.com/problems/bulb-switcher-iv/">1529. 灯泡开关 IV</a></h2>
+<p>一串1翻转出来和一个1是一样的。</p>
+<p>开始的0不用考虑，存不存在都一样。</p>
+<p>对于<code>101010...</code>这样的字符串来说，只需要<code>2n</code>次，n是1的个数。如果最后是1不是0的话减一。</p>
+<pre><code class="language-cpp">int minFlips(string target) {
+    int res = 0;
+    bool out = true;
+    for (size_t i = 0; i &lt; target.size(); ++i)
+    {
+        if(target[i] == '1' &amp;&amp; out)
+        {
+            out = false;
+            res++;
+        }
+        else if(target[i] == '0')
+        {
+            out = true;
+        }
+    }
+    return  res * 2 - 1 + (*target.rbegin() == '0');
+}
+</code></pre>
+<h2 id="1530-好叶子节点对的数量"><a href="https://leetcode-cn.com/problems/number-of-good-leaf-nodes-pairs/">1530. 好叶子节点对的数量</a></h2>
+<p>比较明显的树形dp。记录一下距离当前节点cur距离为x的（子树上的）叶子结点个数，然后左孩子和右孩子距离和小于distance的记录一下即可。</p>
+<p>坑的是节点的val是有重复的，需要字节再计一下。</p>
+<p>这题可以改造一下，二叉树改成多叉（</p>
+<pre><code class="language-cpp">int cnt[2048][16];
+int tot,res;
+// Return node id after reordering
+int dfs(TreeNode* root, int distance)
+{
+    ++tot;
+    int cur = tot;
+    int l = 0, r = 0;
+    if (root-&gt;left)l = dfs(root-&gt;left, distance);
+    if (root-&gt;right)r = dfs(root-&gt;right, distance);
+    if (l == 0 &amp;&amp; r == 0) cnt[cur][0]++;
+    for (int i = 1; i &lt; 16; ++i)
+    {
+        cnt[cur][i] += cnt[l][i - 1] + cnt[r][i - 1];
+    }
+    for (int i = 1; i &lt; distance; ++i)
+    {
+        for (int j = 1; j &lt;= distance - i; ++j)
+        {
+            res += cnt[l][i-1] * cnt[r][j-1];
+        }
+    }
+    return cur;
+}
+int countPairs(TreeNode* root, int distance) {
+    res = 0; tot = 0;
+    dfs(root, distance);
+    return res;
+}
+</code></pre>
+<h2 id="1531-压缩字符串-ii"><a href="https://leetcode-cn.com/problems/string-compression-ii/">1531. 压缩字符串 II</a></h2>
+<p>挺好一题。</p>
+<p>一开始想的是贪心，优先把接近1、2、10、100的字母剪一剪，因为这几个数减一之后整体长度数量会减小。但是没法处理<code>aabbaa</code>,2这组数据，因为bb删除之后a会连到一起。</p>
+<p>考虑dp解法。删除不超过k个字符，等价于选取<code>s.size()-k</code>个字符。因为多删结果只会更优或者相等，不会更差，所以我们删除k个。</p>
+<p>观察最终字符，一定是一段段连续的字母拼成的<s>其实原始字符也是这样</s>，那么我们在dp的时候，选择第<code>i</code>个字符后，只需要考虑选取后面和<code>s[i]</code>相同的字符即可。</p>
+<p>设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>表示从i开始，一共选择了j个字符的最优解。</p>
+<p>选取i时:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><munderover><mi>min</mi><mo>⁡</mo><mrow><mi>a</mi><mo>=</mo><mi>i</mi></mrow><mrow><mi>s</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>(</mo><mo>)</mo></mrow></munderover><mi>c</mi><mi>p</mi><mo>(</mo><mi>s</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>a</mi><mo>)</mo><mo>)</mo><mo>+</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>a</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mi>s</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>a</mi><mo>)</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][j] = \min\limits_{a=i}^{s.size()} cp(same(i,a)) + dp[a+1][j-same(i,a)]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.306524em;vertical-align:-0.727664em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5788600000000002em;"><span style="top:-2.072336em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span><span style="top:-3.65386em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mtight">.</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mathdefault mtight">e</span><span class="mopen mtight">(</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.727664em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span></span></p>
+<p>其中<code>cp</code>表示x个相同字符压缩后的长度，<code>same(i,j)</code>表示区间<code>[i,j]</code>中与<code>s[i]</code>相同的字符个数。</p>
+<p>不选i时，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][j]=dp[i+1][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span></p>
+<p>注意初始化。</p>
+<pre><code class="language-cpp">int cp(int x)
+{
+    if (x &lt;= 1) return 1;
+    if (x &lt; 10) return 2;
+    if (x &lt; 100) return 3;
+    return 4;
+}
+int dp[101][101];
+int getLengthOfOptimalCompression(string s, int k) {
+    k = s.size() - k;
+    memset(dp, 0x3f, sizeof(dp));
+    const int INF = 0x3f3f3f3f;
+    dp[s.size()][0] = 0;
+     for (int i = s.size() - 1; i &gt;= 0; --i)
+    {
+        for (int j = 0; j &lt;= k; ++j)
+        {
+            if (dp[i + 1][j] &lt; INF)
+                dp[i][j] = dp[i + 1][j];
+            else break;
+        }
+        int cnt = 0;
+        for (int j = i; j &lt; s.size(); ++j)
+        {
+            if (s[j] == s[i]) cnt++;
+            for (int a = 0; a + cnt &lt;= k; ++a)
+            {
+                if (dp[j + 1][a] &lt; INF)
+                    dp[i][a + cnt] = min(dp[i][a + cnt], dp[j + 1][a] + cp(cnt));
+                else break;
+            }
+        }
+    }
+    return dp[0][k];
+}
+</code></pre>
+]]></content>
+    </entry>
+</feed>
