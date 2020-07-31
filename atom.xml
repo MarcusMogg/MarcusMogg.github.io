@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://marcusmogg.github.io/</id>
+    <id>https://codemogg.cn</id>
     <title>CodeMogg</title>
-    <updated>2020-07-31T06:06:40.521Z</updated>
+    <updated>2020-07-31T06:07:52.390Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://marcusmogg.github.io/"/>
-    <link rel="self" href="https://marcusmogg.github.io/atom.xml"/>
+    <link rel="alternate" href="https://codemogg.cn"/>
+    <link rel="self" href="https://codemogg.cn/atom.xml"/>
     <subtitle>快乐摸鱼</subtitle>
-    <logo>https://marcusmogg.github.io/images/avatar.png</logo>
-    <icon>https://marcusmogg.github.io/favicon.ico</icon>
+    <logo>https://codemogg.cn/images/avatar.png</logo>
+    <icon>https://codemogg.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, CodeMogg</rights>
     <entry>
         <title type="html"><![CDATA[LeetCode 第 199 场周赛题解]]></title>
-        <id>https://marcusmogg.github.io/post/leetcode-199/</id>
-        <link href="https://marcusmogg.github.io/post/leetcode-199/">
+        <id>https://codemogg.cn/post/leetcode-199/</id>
+        <link href="https://codemogg.cn/post/leetcode-199/">
         </link>
         <updated>2020-07-31T04:46:00.000Z</updated>
         <content type="html"><![CDATA[<p>自从实习跑路之后，最近又开始摸了起来（x）</p>
