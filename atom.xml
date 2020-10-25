@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codemogg.cn</id>
     <title>CodeMogg</title>
-    <updated>2020-10-25T14:05:20.682Z</updated>
+    <updated>2020-10-25T14:06:54.402Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codemogg.cn"/>
     <link rel="self" href="https://codemogg.cn/atom.xml"/>
@@ -10,135 +10,6 @@
     <logo>https://codemogg.cn/images/avatar.png</logo>
     <icon>https://codemogg.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, CodeMogg</rights>
-    <entry>
-        <title type="html"><![CDATA[Linux 常用命令]]></title>
-        <id>https://codemogg.cn/post/0YZ5b1oAT/</id>
-        <link href="https://codemogg.cn/post/0YZ5b1oAT/">
-        </link>
-        <updated>2020-10-21T15:57:09.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="find">find</h2>
-<p><code>find [path] [option] [action]</code></p>
-<p>path 不必多说</p>
-<p>option</p>
-<pre><code>-mtime n ：n 为数字，意义为在 n 天之前的『一天之内』被更动过内容的文件；
--mtime +n ：列出在 n 天之前(不含 n 天本身)被更动过内容的文件档名；
--mtime -n ：列出在 n 天之内(含 n 天本身)被更动过内容的文件档名。
--newer file ：file 为一个存在的文件，列出比 file 还要新的文件档名
-
--user name ：name 为使用者账号名称
--uid n ：n 为数字，这个数字是用户的账号 ID
--name filename：搜寻文件名为 filename 的文件；
--size [+-]SIZE：搜寻比 SIZE 还要大(+)或小(-)的文件。这个 SIZE 的规格有：c: 代表 byte，k: 代表 1024bytes
--type TYPE ：搜寻文件的类型为 TYPE 的，类型主要有：普通文件 (f), 装置文件 (b, c),目录 (d), 连结档 (l), socket (s), 及 FIFO (p) 等属性
-</code></pre>
-<p>示例</p>
-<pre><code class="language-shell">find allocator/ iterator/ sequence_containers/ -type f -name '*.c' -o -name '*.cpp' -o -name '*.h'
-</code></pre>
-<p>-o 表示 or或者<br>
--a 表示 and与<br>
-默认会使用-a</p>
-<h2 id="tar">tar</h2>
-<p><code>tar [-z|-j|-J] [cv] [-f 输出的文件名] filename... &lt;==打包与压缩</code><br>
-<code>tar [-z|-j|-J] [xv] [-f 既有的 tar 文件名] [-C 目录] &lt;==解压缩</code></p>
-<pre><code>-z ：透过 gzip 的支持进行压缩/解压缩：此时档名最好为 *.tar.gz
--j ：透过 bzip2 的支持进行压缩/解压缩：此时档名最好为 *.tar.bz2
--J ：透过 xz 的支持进行压缩/解压缩：此时档名最好为 *.tar.xz
--v ：在压缩/解压缩的过程中，将正在处理的文件名显示出来
--c ：建立打包文件
--x :  解压缩
-</code></pre>
-<p>-f 可以和前面的合并到一起，比如解压可以写成</p>
-<pre><code>tar -zxv -f filename.tar.gz out/
-tar -zxvf filename.tar.gz out/
-</code></pre>
-<h2 id="vim">vim</h2>
-<h3 id="一般模式">一般模式</h3>
-<p>默认进入界面<br>
-esc 也会进入</p>
-<h4 id="移动">移动</h4>
-<p><code>hjkl</code> 对应 <code>← ↓ ↑ →</code>   如果先打数字再输对应的字符之后可以移动对应的次数，比如50l 相当于50次l</p>
-<p><code>ctrl + f</code> 向下跳一页 相当于 pagedown<br>
-<code>ctrl + b</code> 向上跳一页 相当于 pageup<br>
-<code>ctrl + d</code> 向下跳半页<br>
-<code>ctrl + u</code> 向上跳半页</p>
-<p><code>+</code> 光标移动到下一行开始非空格符的位置<br>
-<code>-</code> 光标移动到上一行开始非空格符的位置</p>
-<p><code>[num] + space</code>   向后移动num个字符，<code>[num] + l</code>的区别是 space可以移动到下一行 l不会</p>
-<p><code>0</code> 或者 home 移动到行首<br>
-<code>$</code> 或者 end 移动到行首</p>
-<p><code>G</code> 移动到文件最后一行开始<br>
-<code>num G</code> 移动到文件第n行开始<br>
-<code>gg</code>移动到文件第一行开始<br>
-<code>num &lt;Enter&gt;</code> 向下移动num行</p>
-<h4 id="复制粘贴删除">复制粘贴删除</h4>
-<p><code>x</code> 相当于 del<br>
-<code>X</code> 相当于 backspace<br>
-<code>num x|X</code> 执行num次x或者X</p>
-<p><code>dd</code> 删除一行<br>
-<code>num dd</code> 删除nun行<br>
-<code>d0</code> 删除光标所在位置到该行的开始<br>
-<code>d$</code> 删除光标所在位置到该行的结束</p>
-<p><code>yy</code> 复制一行<br>
-<code>num yy</code> 复制nun行<br>
-<code>y0</code> 复制光标所在位置到该行的开始<br>
-<code>y$</code> 复制光标所在位置到该行的结束</p>
-<p><code>p</code> 粘贴 如果复制的是一行（yy）则粘贴到下一行，如果复制的是部分数据，粘贴到当前字符的后面<br>
-<code>P</code> 粘贴 如果复制的是一行（yy）则粘贴到上一行，如果复制的是部分数据，粘贴到当前字符的前面</p>
-<p><code>u</code> 撤销上一个操作<br>
-<code>ctrl + r</code> 重做上一个操作</p>
-<h4 id="区块选择">区块选择</h4>
-<p><code>v</code> 进入选择模式，按字符选<br>
-<code>V</code> 进入选择模式，按行选<br>
-<code>ctrl + V</code> 进入选择模式，按行选</p>
-<h3 id="编辑模式">编辑模式</h3>
-<p>一般模式下按<code>i I o O a A r R</code> 都可以进入<br>
-这个模式下输入文本</p>
-<p><code>i</code> 从光标处开始插入<br>
-<code>I</code> 从光标所在行的第一个非空白符开始插入<br>
-<code>a</code> 从光标处开始的下一个字符插入<br>
-<code>A</code> 从光标所在行的最后一个字符开始插入<br>
-<code>o</code> 往下插入新的一行<br>
-<code>O</code> 往上插入新的一行<br>
-<code>r</code> replace模式，只会取代一次，然后返回一般模式<br>
-<code>R</code>replace模式，一直取代</p>
-<h3 id="命令模式">命令模式</h3>
-<p>一般模式下输入 <code>: / ?</code> 可以在左下角输入命令</p>
-<h4 id="搜索">搜索</h4>
-<p><code>/word</code> 向下找word这个字符串<br>
-<code>?word</code> 向上找word这个字符串<br>
-<code>n</code> 重复上一次搜寻动作<br>
-<code>N</code>反向重复上一次搜寻动作</p>
-<h4 id="替换">替换</h4>
-<p><code>:num1,num2s/word1/word2/g</code> 将num1行到num2行中的所有word1替换为word2<br>
-<code>:1,$s/word1/word2/g</code> 将第一行到最后一行中的所有word1替换为word2<br>
-<code>:1,$s/word1/word2/gc</code> 将第一行到最后一行中的所有word1替换为word2，并且每一个替换会让你确认</p>
-<h4 id="保存离开">保存离开</h4>
-<p><code>:w</code> 将编辑的数据写入硬盘文件中<br>
-<code>:w!</code> 若文件属性为『只读』时，强制写入该文件。不过，到底能不能写入， 还是跟你对该文件的文件权限有关<br>
-<code>:q</code> 离开 vi<br>
-<code>:q!</code> 若曾修改过文件，又不想储存，使用 ! 为强制离开不储存文件<br>
-注意一下，! 在 vi 当中，常常具有『强制』的意思<br>
-<code>:wq</code> 储存后离开，若为 <code>:wq!</code> 则为强制储存后离开<br>
-ZZ 这是大写的 Z 喔！若文件没有更动，则不储存离开，若文件已经被更动过，则储存后离开！<br>
-<code>:w [filename]</code> 将编辑的数据储存成另一个文件<br>
-<code>:r [filename]</code> 在编辑的数据中，读入另一个文件的数据。亦即将 『filename』 这个文件内容加到游标所在列后面<br>
-<code>:n1,n2 w [filename]</code> 将 n1 到 n2 的内容储存成 filename 这个文件。<br>
-<code>:! command</code>暂时离开 vi 到指令列模式下执行 command 的显示结果！例如<br>
-『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的文件信息</p>
-<h4 id="设置">设置</h4>
-<p><code>:set nu</code> 显示行号<br>
-<code>:set nonu</code> 与 set nu 相反，为取消行号</p>
-<h3 id="多文件编辑">多文件编辑</h3>
-<p>vim file1 file2 file3...</p>
-<p><code>:n</code> 编辑下一个文件<br>
-<code>:N</code> 编辑上一个文件<br>
-<code>:files</code> 列出目前这个 vim 的开启的所有文件</p>
-<p><code>:sp [filename]</code> 开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新文件，否则表示两个窗口为同一个文件内容(同步显示)。<br>
-<code>[ctrl]+w+ j</code> 或者<code>[ctrl]+w+↓</code> 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。<br>
-<code>[ctrl]+w+ k</code> <code>[ctrl]+w+↑</code>同上，不过光标移动到上面的窗口。<br>
-<code>[ctrl]+w+ q</code> 其实就是 :q 结束离开。如果想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[ MapReduce 部分翻译]]></title>
         <id>https://codemogg.cn/post/H0FKr9ipF/</id>
