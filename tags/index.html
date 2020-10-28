@@ -9,7 +9,7 @@
 <meta name="description" content="快乐摸鱼">
 <meta name="theme-color" content="#000">
 <title>CodeMogg</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1603634812261">
+<link rel="shortcut icon" href="/favicon.ico?v=1603870830115">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -198,7 +198,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">4</span>
+        <span class="site-item-stat-count">5</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -247,6 +247,8 @@
       
       
         
+      
+        
           
             
       
@@ -269,6 +271,8 @@
       
       
         
+      
+        
           
         
       
@@ -289,6 +293,8 @@
       <a class="cloud-tag" href="https://codemogg.cn/tag/cMQnAV8Nn/" rel="1">牛客题解</a>
     
       
+      
+        
       
         
           
@@ -570,6 +576,168 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://codemogg.cn/post/0YZ5b1oAT/"" data-c="
+          &lt;h2 id=&#34;shell&#34;&gt;shell&lt;/h2&gt;
+&lt;p&gt;tab 补全&lt;br&gt;
+&lt;code&gt;ctrl+u&lt;/code&gt;从光标处向前删除指令串&lt;br&gt;
+&lt;code&gt;ctrl+k&lt;/code&gt;从光标处向后删除指令串&lt;/p&gt;
+&lt;h3 id=&#34;变量&#34;&gt;变量&lt;/h3&gt;
+&lt;p&gt;变量的设定规则&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;变量与变量内容以一个等号&lt;code&gt;=&lt;/code&gt;来连结，如：&lt;code&gt;myname=VBird&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;等号两边不能直接接空格符，所示为错误：&lt;code&gt;myname = VBird&lt;/code&gt;或&lt;code&gt;myname=VBird Tsai&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;变量名称只能是英文字母与数字，但是开头字符不能是数字，如下为错误：&lt;code&gt;2myname=VBird&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;变量内容若有空格符可使用双引号&lt;code&gt;&amp;quot;&lt;/code&gt;或单引号&lt;code&gt;&#39;&lt;/code&gt;将变量内容结合起来，但:&lt;br&gt;
+- 双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示：&lt;br&gt;
+&lt;code&gt;var=&amp;quot;lang is $LANG&amp;quot;&lt;/code&gt;则&lt;code&gt;echo $var&lt;/code&gt;可得&lt;code&gt;lang is zh_TW.UTF-8&lt;/code&gt;&lt;br&gt;
+- o 单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示：&lt;br&gt;
+&lt;code&gt;var=&#39;lang is $LANG&#39;&lt;/code&gt;则&lt;code&gt;echo $var&lt;/code&gt;可得&lt;code&gt;lang is $LANG&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可用字符&lt;code&gt;\&lt;/code&gt;将特殊符号(如 [Enter], $, , 空格符, &#39;等)变成一般字符，如：&lt;br&gt;
+&lt;code&gt;myname=VBird\ Tsai&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在一串指令的执行中，还需要藉由其他额外的指令所提供的信息时，可以使用反单引号`指令` 或&lt;code&gt;$(指令)&lt;/code&gt; 。例如想要取得核心版本的设定：&lt;br&gt;
+&lt;code&gt;version=$(uname -r)&lt;/code&gt;再&lt;code&gt;echo $version&lt;/code&gt;可得&lt;code&gt;3.10.0-229.el7.x86_64&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;若该变量为扩增变量内容时，则可用 &lt;code&gt;&amp;quot;$变量名称&amp;quot;&lt;/code&gt;或&lt;code&gt;${变量}&lt;/code&gt;  累加内容，如下所示：&lt;br&gt;
+&lt;code&gt;PATH=&amp;quot;$PATH&amp;quot;:/home/bin&lt;/code&gt;或&lt;code&gt;PATH=${PATH}:/home/bin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;若该变量需要在其他子程序执行，则需要以 export 来使变量变成环境变量：&lt;code&gt;export PATH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;通常大写字符为系统默认变量，自行设定变量可以使用小写字符，方便判断 (纯粹依照使用者兴趣与嗜好) ；&lt;/li&gt;
+&lt;li&gt;取消变量的方法为使用 unset ：&lt;code&gt;unset 变量名称&lt;/code&gt;例如取消 myname 的设定：&lt;br&gt;
+&lt;code&gt;unset myname&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;env&lt;/code&gt; 查看&lt;br&gt;
+&lt;code&gt;export&lt;/code&gt;设置&lt;/p&gt;
+&lt;h3 id=&#34;通配符&#34;&gt;通配符&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;*&lt;/code&gt; 代表任意多个字符&lt;br&gt;
+&lt;code&gt;?&lt;/code&gt; 代表一个任意字符&lt;br&gt;
+&lt;code&gt;[ ]&lt;/code&gt; 代表一定有一个在括号内的字符(非任意字符)。例如 [abcd] 代表一定有一个字符， 可能是 a, b,&lt;br&gt;
+c, d 这四个任何一个&lt;br&gt;
+&lt;code&gt;[ - ]&lt;/code&gt;若有减号在中括号内时，代表在编码顺序内的所有字符。例如 [0-9] 代表 0 到 9 之间的所有数字，&lt;br&gt;
+&lt;code&gt;[^ ]&lt;/code&gt;若中括号内的第一个字符为指数符号 (^) ，那表示『反向选择』，例如 [^abc] 代表 一定有一个字符，只要是非 a, b, c 的其他字符就接受的意思&lt;/p&gt;
+&lt;h2 id=&#34;find&#34;&gt;find&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;find [path] [option] [action]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;path 不必多说&lt;/p&gt;
+&lt;p&gt;option&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-mtime n ：n 为数字，意义为在 n 天之前的『一天之内』被更动过内容的文件；
+-mtime +n ：列出在 n 天之前(不含 n 天本身)被更动过内容的文件档名；
+-mtime -n ：列出在 n 天之内(含 n 天本身)被更动过内容的文件档名。
+-newer file ：file 为一个存在的文件，列出比 file 还要新的文件档名
+
+-user name ：name 为使用者账号名称
+-uid n ：n 为数字，这个数字是用户的账号 ID
+-name filename：搜寻文件名为 filename 的文件；
+-size [+-]SIZE：搜寻比 SIZE 还要大(+)或小(-)的文件。这个 SIZE 的规格有：c: 代表 byte，k: 代表 1024bytes
+-type TYPE ：搜寻文件的类型为 TYPE 的，类型主要有：普通文件 (f), 装置文件 (b, c),目录 (d), 连结档 (l), socket (s), 及 FIFO (p) 等属性
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;示例&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;find allocator/ iterator/ sequence_containers/ -type f -name &#39;*.c&#39; -o -name &#39;*.cpp&#39; -o -name &#39;*.h&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;-o 表示 or或者&lt;br&gt;
+-a 表示 and与&lt;br&gt;
+默认会使用-a&lt;/p&gt;
+&lt;h2 id=&#34;tar&#34;&gt;tar&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;tar [-z|-j|-J] [cv] [-f 输出的文件名] filename... &amp;lt;==打包与压缩&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;tar [-z|-j|-J] [xv] [-f 既有的 tar 文件名] [-C 目录] &amp;lt;==解压缩&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-z ：透过 gzip 的支持进行压缩/解压缩：此时档名最好为 *.tar.gz
+-j ：透过 bzip2 的支持进行压缩/解压缩：此时档名最好为 *.tar.bz2
+-J ：透过 xz 的支持进行压缩/解压缩：此时档名最好为 *.tar.xz
+-v ：在压缩/解压缩的过程中，将正在处理的文件名显示出来
+-c ：建立打包文件
+-x :  解压缩
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;-f 可以和前面的合并到一起，比如解压可以写成&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tar -zxv -f filename.tar.gz out/
+tar -zxvf filename.tar.gz out/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;vim&#34;&gt;vim&lt;/h2&gt;
+&lt;h3 id=&#34;一般模式&#34;&gt;一般模式&lt;/h3&gt;
+&lt;p&gt;默认进入界面&lt;br&gt;
+esc 也会进入&lt;/p&gt;
+&lt;h4 id=&#34;移动&#34;&gt;移动&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;hjkl&lt;/code&gt; 对应 &lt;code&gt;← ↓ ↑ →&lt;/code&gt;   如果先打数字再输对应的字符之后可以移动对应的次数，比如50l 相当于50次l&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ctrl + f&lt;/code&gt; 向下跳一页 相当于 pagedown&lt;br&gt;
+&lt;code&gt;ctrl + b&lt;/code&gt; 向上跳一页 相当于 pageup&lt;br&gt;
+&lt;code&gt;ctrl + d&lt;/code&gt; 向下跳半页&lt;br&gt;
+&lt;code&gt;ctrl + u&lt;/code&gt; 向上跳半页&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;+&lt;/code&gt; 光标移动到下一行开始非空格符的位置&lt;br&gt;
+&lt;code&gt;-&lt;/code&gt; 光标移动到上一行开始非空格符的位置&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[num] + space&lt;/code&gt;   向后移动num个字符，&lt;code&gt;[num] + l&lt;/code&gt;的区别是 space可以移动到下一行 l不会&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;0&lt;/code&gt; 或者 home 移动到行首&lt;br&gt;
+&lt;code&gt;$&lt;/code&gt; 或者 end 移动到行首&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;G&lt;/code&gt; 移动到文件最后一行开始&lt;br&gt;
+&lt;code&gt;num G&lt;/code&gt; 移动到文件第n行开始&lt;br&gt;
+&lt;code&gt;gg&lt;/code&gt;移动到文件第一行开始&lt;br&gt;
+&lt;code&gt;num &amp;lt;Enter&amp;gt;&lt;/code&gt; 向下移动num行&lt;/p&gt;
+&lt;h4 id=&#34;复制粘贴删除&#34;&gt;复制粘贴删除&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; 相当于 del&lt;br&gt;
+&lt;code&gt;X&lt;/code&gt; 相当于 backspace&lt;br&gt;
+&lt;code&gt;num x|X&lt;/code&gt; 执行num次x或者X&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dd&lt;/code&gt; 删除一行&lt;br&gt;
+&lt;code&gt;num dd&lt;/code&gt; 删除nun行&lt;br&gt;
+&lt;code&gt;d0&lt;/code&gt; 删除光标所在位置到该行的开始&lt;br&gt;
+&lt;code&gt;d$&lt;/code&gt; 删除光标所在位置到该行的结束&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yy&lt;/code&gt; 复制一行&lt;br&gt;
+&lt;code&gt;num yy&lt;/code&gt; 复制nun行&lt;br&gt;
+&lt;code&gt;y0&lt;/code&gt; 复制光标所在位置到该行的开始&lt;br&gt;
+&lt;code&gt;y$&lt;/code&gt; 复制光标所在位置到该行的结束&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; 粘贴 如果复制的是一行（yy）则粘贴到下一行，如果复制的是部分数据，粘贴到当前字符的后面&lt;br&gt;
+&lt;code&gt;P&lt;/code&gt; 粘贴 如果复制的是一行（yy）则粘贴到上一行，如果复制的是部分数据，粘贴到当前字符的前面&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;u&lt;/code&gt; 撤销上一个操作&lt;br&gt;
+&lt;code&gt;ctrl + r&lt;/code&gt; 重做上一个操作&lt;/p&gt;
+&lt;h4 id=&#34;区块选择&#34;&gt;区块选择&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;v&lt;/code&gt; 进入选择模式，按字符选&lt;br&gt;
+&lt;code&gt;V&lt;/code&gt; 进入选择模式，按行选&lt;br&gt;
+&lt;code&gt;ctrl + V&lt;/code&gt; 进入选择模式，按行选&lt;/p&gt;
+&lt;h3 id=&#34;编辑模式&#34;&gt;编辑模式&lt;/h3&gt;
+&lt;p&gt;一般模式下按&lt;code&gt;i I o O a A r R&lt;/code&gt; 都可以进入&lt;br&gt;
+这个模式下输入文本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;i&lt;/code&gt; 从光标处开始插入&lt;br&gt;
+&lt;code&gt;I&lt;/code&gt; 从光标所在行的第一个非空白符开始插入&lt;br&gt;
+&lt;code&gt;a&lt;/code&gt; 从光标处开始的下一个字符插入&lt;br&gt;
+&lt;code&gt;A&lt;/code&gt; 从光标所在行的最后一个字符开始插入&lt;br&gt;
+&lt;code&gt;o&lt;/code&gt; 往下插入新的一行&lt;br&gt;
+&lt;code&gt;O&lt;/code&gt; 往上插入新的一行&lt;br&gt;
+&lt;code&gt;r&lt;/code&gt; replace模式，只会取代一次，然后返回一般模式&lt;br&gt;
+&lt;code&gt;R&lt;/code&gt;replace模式，一直取代&lt;/p&gt;
+&lt;h3 id=&#34;命令模式&#34;&gt;命令模式&lt;/h3&gt;
+&lt;p&gt;一般模式下输入 &lt;code&gt;: / ?&lt;/code&gt; 可以在左下角输入命令&lt;/p&gt;
+&lt;h4 id=&#34;搜索&#34;&gt;搜索&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;/word&lt;/code&gt; 向下找word这个字符串&lt;br&gt;
+&lt;code&gt;?word&lt;/code&gt; 向上找word这个字符串&lt;br&gt;
+&lt;code&gt;n&lt;/code&gt; 重复上一次搜寻动作&lt;br&gt;
+&lt;code&gt;N&lt;/code&gt;反向重复上一次搜寻动作&lt;/p&gt;
+&lt;h4 id=&#34;替换&#34;&gt;替换&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;:num1,num2s/word1/word2/g&lt;/code&gt; 将num1行到num2行中的所有word1替换为word2&lt;br&gt;
+&lt;code&gt;:1,$s/word1/word2/g&lt;/code&gt; 将第一行到最后一行中的所有word1替换为word2&lt;br&gt;
+&lt;code&gt;:1,$s/word1/word2/gc&lt;/code&gt; 将第一行到最后一行中的所有word1替换为word2，并且每一个替换会让你确认&lt;/p&gt;
+&lt;h4 id=&#34;保存离开&#34;&gt;保存离开&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;:w&lt;/code&gt; 将编辑的数据写入硬盘文件中&lt;br&gt;
+&lt;code&gt;:w!&lt;/code&gt; 若文件属性为『只读』时，强制写入该文件。不过，到底能不能写入， 还是跟你对该文件的文件权限有关&lt;br&gt;
+&lt;code&gt;:q&lt;/code&gt; 离开 vi&lt;br&gt;
+&lt;code&gt;:q!&lt;/code&gt; 若曾修改过文件，又不想储存，使用 ! 为强制离开不储存文件&lt;br&gt;
+注意一下，! 在 vi 当中，常常具有『强制』的意思&lt;br&gt;
+&lt;code&gt;:wq&lt;/code&gt; 储存后离开，若为 &lt;code&gt;:wq!&lt;/code&gt; 则为强制储存后离开&lt;br&gt;
+ZZ 这是大写的 Z 喔！若文件没有更动，则不储存离开，若文件已经被更动过，则储存后离开！&lt;br&gt;
+&lt;code&gt;:w [filename]&lt;/code&gt; 将编辑的数据储存成另一个文件&lt;br&gt;
+&lt;code&gt;:r [filename]&lt;/code&gt; 在编辑的数据中，读入另一个文件的数据。亦即将 『filename』 这个文件内容加到游标所在列后面&lt;br&gt;
+&lt;code&gt;:n1,n2 w [filename]&lt;/code&gt; 将 n1 到 n2 的内容储存成 filename 这个文件。&lt;br&gt;
+&lt;code&gt;:! command&lt;/code&gt;暂时离开 vi 到指令列模式下执行 command 的显示结果！例如&lt;br&gt;
+『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的文件信息&lt;/p&gt;
+&lt;h4 id=&#34;设置&#34;&gt;设置&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;:set nu&lt;/code&gt; 显示行号&lt;br&gt;
+&lt;code&gt;:set nonu&lt;/code&gt; 与 set nu 相反，为取消行号&lt;/p&gt;
+&lt;h3 id=&#34;多文件编辑&#34;&gt;多文件编辑&lt;/h3&gt;
+&lt;p&gt;vim file1 file2 file3...&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:n&lt;/code&gt; 编辑下一个文件&lt;br&gt;
+&lt;code&gt;:N&lt;/code&gt; 编辑上一个文件&lt;br&gt;
+&lt;code&gt;:files&lt;/code&gt; 列出目前这个 vim 的开启的所有文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:sp [filename]&lt;/code&gt; 开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新文件，否则表示两个窗口为同一个文件内容(同步显示)。&lt;br&gt;
+&lt;code&gt;[ctrl]+w+ j&lt;/code&gt; 或者&lt;code&gt;[ctrl]+w+↓&lt;/code&gt; 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。&lt;br&gt;
+&lt;code&gt;[ctrl]+w+ k&lt;/code&gt; &lt;code&gt;[ctrl]+w+↑&lt;/code&gt;同上，不过光标移动到上面的窗口。&lt;br&gt;
+&lt;code&gt;[ctrl]+w+ q&lt;/code&gt; 其实就是 :q 结束离开。如果想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊&lt;/p&gt;
+">Linux 常用命令</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://codemogg.cn/post/H0FKr9ipF/"" data-c="
