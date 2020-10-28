@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codemogg.cn</id>
     <title>CodeMogg</title>
-    <updated>2020-10-28T07:40:59.776Z</updated>
+    <updated>2020-10-28T07:41:20.613Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codemogg.cn"/>
     <link rel="self" href="https://codemogg.cn/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://codemogg.cn/images/avatar.png</logo>
     <icon>https://codemogg.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, CodeMogg</rights>
+    <entry>
+        <title type="html"><![CDATA[Shell编程]]></title>
+        <id>https://codemogg.cn/post/XYD7ki0v0/</id>
+        <link href="https://codemogg.cn/post/XYD7ki0v0/">
+        </link>
+        <updated>2020-10-25T14:10:45.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="变量">变量</h2>
+<p>变量的设定规则</p>
+<ol>
+<li>变量与变量内容以一个等号<code>=</code>来连结，如：<code>myname=VBird</code></li>
+<li>等号两边不能直接接空格符，所示为错误：<code>myname = VBird</code>或<code>myname=VBird Tsai</code></li>
+<li>变量名称只能是英文字母与数字，但是开头字符不能是数字，如下为错误：<code>2myname=VBird</code></li>
+<li>变量内容若有空格符可使用双引号<code>&quot;</code>或单引号<code>'</code>将变量内容结合起来，但:<br>
+- 双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示：<br>
+<code>var=&quot;lang is $LANG&quot;</code>则<code>echo $var</code>可得<code>lang is zh_TW.UTF-8</code><br>
+- o 单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示：<br>
+<code>var='lang is $LANG'</code>则<code>echo $var</code>可得<code>lang is $LANG</code></li>
+<li>可用字符<code>\</code>将特殊符号(如 [Enter], $, , 空格符, '等)变成一般字符，如：<br>
+<code>myname=VBird\ Tsai</code></li>
+<li>在一串指令的执行中，还需要藉由其他额外的指令所提供的信息时，可以使用反单引号`指令` 或<code>$(指令)</code> 。例如想要取得核心版本的设定：<br>
+<code>version=$(uname -r)</code>再<code>echo $version</code>可得<code>3.10.0-229.el7.x86_64</code></li>
+<li>若该变量为扩增变量内容时，则可用 <code>&quot;$变量名称&quot;</code>或<code>${变量}</code>  累加内容，如下所示：<br>
+<code>PATH=&quot;$PATH&quot;:/home/bin</code>或<code>PATH=${PATH}:/home/bin</code></li>
+<li>若该变量需要在其他子程序执行，则需要以 export 来使变量变成环境变量：<code>export PATH</code></li>
+<li>通常大写字符为系统默认变量，自行设定变量可以使用小写字符，方便判断 (纯粹依照使用者兴趣与嗜好) ；</li>
+<li>取消变量的方法为使用 unset ：<code>unset 变量名称</code>例如取消 myname 的设定：<br>
+<code>unset myname</code></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux 常用命令]]></title>
         <id>https://codemogg.cn/post/0YZ5b1oAT/</id>
