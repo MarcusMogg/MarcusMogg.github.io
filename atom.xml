@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codemogg.cn</id>
     <title>CodeMogg</title>
-    <updated>2020-10-28T07:41:20.613Z</updated>
+    <updated>2020-10-29T11:18:25.793Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codemogg.cn"/>
     <link rel="self" href="https://codemogg.cn/atom.xml"/>
@@ -202,7 +202,7 @@ ZZ 这是大写的 Z 喔！若文件没有更动，则不储存离开，若文�
 <p><code>:sp [filename]</code> 开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新文件，否则表示两个窗口为同一个文件内容(同步显示)。<br>
 <code>[ctrl]+w+ j</code> 或者<code>[ctrl]+w+↓</code> 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。<br>
 <code>[ctrl]+w+ k</code> <code>[ctrl]+w+↑</code>同上，不过光标移动到上面的窗口。<br>
-<code>[ctrl]+w+ q</code> 其实就是 :q 结束离开。如果想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊</p>
+<code>[ctrl]+w+ q</code> 其实就是 :q 结束离开。如果想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q</p>
 ]]></content>
     </entry>
     <entry>
