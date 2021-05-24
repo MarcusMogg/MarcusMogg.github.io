@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "mogg",
   "scripts": {
-    "dev": "vuepress dev . --no-cache  --open --host \"localhost\"",
+    "dev": "vuepress dev .   --open --host \"localhost\"",
     "build": "vuepress build ."
   },
   "devDependencies": {

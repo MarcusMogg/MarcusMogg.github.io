@@ -1,7 +1,7 @@
 ---
 title: 'Linux 常用命令'
 date: 2020-10-21 23:57:09
-tags: []
+tags: [Linux使用]
 mathjax: true
 ---
 一些基础知识和命令的笔记
