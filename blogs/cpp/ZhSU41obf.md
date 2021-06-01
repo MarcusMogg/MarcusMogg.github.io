@@ -2,7 +2,7 @@
 title: 'Cmake基础'
 date: 2020-11-05 22:07:09
 tags: [cpp]
-mathjax: true
+categories: ["CppTools"]
 ---
 
 通过这个[项目](https://github.com/ttroy50/cmake-examples)来学习cmake

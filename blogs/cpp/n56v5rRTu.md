@@ -2,7 +2,7 @@
 title: 'Makefile'
 date: 2020-10-30 19:05:31
 tags: [cpp]
-mathjax: true
+categories: ["CppTools"]
 ---
 
 ## 编译和链接
